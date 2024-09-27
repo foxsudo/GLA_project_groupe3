@@ -6,6 +6,9 @@ package gestionresidence;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.print.PrinterJob;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import javax.swing.JLabel;
@@ -23,9 +26,20 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import javax.print.PrintService;
 //import java.text.SimpleDateFormat;
 import javax.swing.*;
 import javax.swing.table.TableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -68,7 +82,7 @@ public class DashBoard extends javax.swing.JFrame {
                     + "WHERE UPPER(fonction) LIKE '%ETUDIANT%' "
                     + "GROUP BY UPPER(nationalite)");
             while (rs.next()) {
-                barDataset.setValue(rs.getString("nationalite"), new Double(rs.getDouble("nbreTotal")));
+                barDataset.setValue(rs.getString("nationalite"), rs.getDouble("nbreTotal"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -417,6 +431,7 @@ public class DashBoard extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblManageStudent = new rojeru_san.complementos.RSTableMetro();
         jLabel2 = new javax.swing.JLabel();
+        btnPrint = new javax.swing.JButton();
         pnlManageRoom = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         pnlManageChat = new javax.swing.JPanel();
@@ -1277,6 +1292,15 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel2.setText("Studends deatils");
         pnlManageStudent.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 240, 40));
 
+        btnPrint.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        pnlManageStudent.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(1008, 393, 110, 30));
+
         jTabbedPane1.addTab("tab3", pnlManageStudent);
 
         jLabel23.setText("MRoom");
@@ -1550,6 +1574,42 @@ public class DashBoard extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblManageStudentMouseClicked
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gestion_residence", "postgres", "Reinge");
+            JasperDesign jdesign = JRXmlLoader.load("/Users/charlyrenard/NetBeansProjects/GestionResidence/src/gestionresidence/studentReport.jrxml");
+
+            String query = "SELECT * FROM utilisateurs WHERE UPPER(fonction) LIKE '%ETUDIANT%' ORDER BY matricule";
+
+            JRDesignQuery updateQuery = new JRDesignQuery();
+            updateQuery.setText(query);
+
+            jdesign.setQuery(updateQuery);
+
+            JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+            JasperPrint jprint = JasperFillManager.fillReport(jreport, null, conn);
+
+            JasperViewer.viewReport(jprint);
+            
+//            // Vérifier si une imprimante est disponible
+//            PrintService[] printServices = PrinterJob.lookupPrintServices();
+//            if (printServices.length > 0) {
+//                // S'il y a des imprimantes disponibles, lancer l'impression
+//                JasperPrintManager.printReport(jprint, true);
+//                System.out.println("Impression lancée avec succès !");
+//            } else {
+//                // Sinon, exporter en PDF
+//                String outputPath = System.getProperty("user.home") + "/Documents/studentReport.pdf";
+//                JasperExportManager.exportReportToPdfFile(jprint, outputPath);
+//                System.out.println("Aucune imprimante trouvée, rapport exporté en PDF : " + outputPath);
+//            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
     void setColor(JPanel panel) {
         panel.setBackground(new Color(255, 51, 51));
     }
@@ -1596,6 +1656,7 @@ public class DashBoard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private necesario.RSMaterialButtonCircle btnAdd;
     private necesario.RSMaterialButtonCircle btnDelete;
+    private javax.swing.JButton btnPrint;
     private necesario.RSMaterialButtonCircle btnUpdate;
     private javax.swing.JComboBox<String> cboSexe;
     private javax.swing.JLabel jLabel1;
