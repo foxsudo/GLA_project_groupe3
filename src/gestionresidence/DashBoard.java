@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template 
  */
 package gestionresidence;
 
@@ -40,6 +40,15 @@ import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.Properties;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.InternetAddress;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.SendFailedException;
+import javax.mail.Transport;
 
 /**
  *
@@ -65,6 +74,7 @@ public class DashBoard extends javax.swing.JFrame {
         setAllRoomDetailsToTable();
         setDataToCards();
         //lblNbreStudent.setText("  "+String.valueOf(getStudentCount()));
+        txtFrom.setText("teamglap27@gmail.com");
     }
 
     DefaultTableModel model;
@@ -436,10 +446,24 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         pnlManageChat = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        pnlManageSupport = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
         pnlManageStats = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
+        pnlManageSupport = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        cboFrom = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        txtTo = new javax.swing.JTextField();
+        txtSubject = new javax.swing.JTextField();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtArMessage = new javax.swing.JTextArea();
+        txtFrom = new javax.swing.JTextField();
+        btnSendMessage = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -643,7 +667,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("YuGothic", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Sell_26px.png"))); // NOI18N
-        jLabel9.setText("   Support");
+        jLabel9.setText("   Stats");
 
         javax.swing.GroupLayout pnlSupportLayout = new javax.swing.GroupLayout(pnlSupport);
         pnlSupport.setLayout(pnlSupportLayout);
@@ -700,7 +724,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("YuGothic", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Sell_26px.png"))); // NOI18N
-        jLabel13.setText("   Stats");
+        jLabel13.setText("   Support");
 
         javax.swing.GroupLayout pnlStatsLayout = new javax.swing.GroupLayout(pnlStats);
         pnlStats.setLayout(pnlStatsLayout);
@@ -1345,27 +1369,6 @@ public class DashBoard extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab5", pnlManageChat);
 
-        jLabel18.setText("support");
-
-        javax.swing.GroupLayout pnlManageSupportLayout = new javax.swing.GroupLayout(pnlManageSupport);
-        pnlManageSupport.setLayout(pnlManageSupportLayout);
-        pnlManageSupportLayout.setHorizontalGroup(
-            pnlManageSupportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManageSupportLayout.createSequentialGroup()
-                .addGap(387, 387, 387)
-                .addComponent(jLabel18)
-                .addContainerGap(698, Short.MAX_VALUE))
-        );
-        pnlManageSupportLayout.setVerticalGroup(
-            pnlManageSupportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManageSupportLayout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(jLabel18)
-                .addContainerGap(536, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("tab6", pnlManageSupport);
-
         jLabel15.setText("Stats");
 
         javax.swing.GroupLayout pnlManageStatsLayout = new javax.swing.GroupLayout(pnlManageStats);
@@ -1386,6 +1389,141 @@ public class DashBoard extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("tab7", pnlManageStats);
+
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel48.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel48.setText("Email Sending Form");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 550, -1));
+
+        cboFrom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel18.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel18.setText("From");
+
+        jLabel45.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel45.setText("To");
+
+        jLabel46.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel46.setText("Subject");
+
+        jLabel47.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel47.setText("Message");
+
+        txtArMessage.setColumns(20);
+        txtArMessage.setRows(5);
+        jScrollPane4.setViewportView(txtArMessage);
+
+        btnSendMessage.setText("Send");
+        btnSendMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendMessageActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSendMessage)
+                    .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(80, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addComponent(jLabel18)
+                            .addGap(55, 55, 55)
+                            .addComponent(cboFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addComponent(jLabel45)
+                            .addGap(78, 78, 78)
+                            .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addComponent(jLabel46)
+                            .addGap(35, 35, 35)
+                            .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addComponent(jLabel47)
+                            .addGap(23, 23, 23)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addComponent(btnSendMessage)
+                .addGap(37, 37, 37))
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addGap(7, 7, 7)
+                            .addComponent(jLabel18))
+                        .addComponent(cboFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(20, 20, 20)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addGap(7, 7, 7)
+                            .addComponent(jLabel45))
+                        .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(17, 17, 17)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel46)
+                        .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(30, 30, 30)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel47))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel9.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 550, 490));
+
+        javax.swing.GroupLayout pnlManageSupportLayout = new javax.swing.GroupLayout(pnlManageSupport);
+        pnlManageSupport.setLayout(pnlManageSupportLayout);
+        pnlManageSupportLayout.setHorizontalGroup(
+            pnlManageSupportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlManageSupportLayout.setVerticalGroup(
+            pnlManageSupportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab6", pnlManageSupport);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 1130, 760));
 
@@ -1591,24 +1729,63 @@ public class DashBoard extends javax.swing.JFrame {
             JasperPrint jprint = JasperFillManager.fillReport(jreport, null, conn);
 
             JasperViewer.viewReport(jprint);
-            
-//            // Vérifier si une imprimante est disponible
-//            PrintService[] printServices = PrinterJob.lookupPrintServices();
-//            if (printServices.length > 0) {
-//                // S'il y a des imprimantes disponibles, lancer l'impression
-//                JasperPrintManager.printReport(jprint, true);
-//                System.out.println("Impression lancée avec succès !");
-//            } else {
-//                // Sinon, exporter en PDF
-//                String outputPath = System.getProperty("user.home") + "/Documents/studentReport.pdf";
-//                JasperExportManager.exportReportToPdfFile(jprint, outputPath);
-//                System.out.println("Aucune imprimante trouvée, rapport exporté en PDF : " + outputPath);
-//            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnSendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendMessageActionPerformed
+        String ToEmail = txtTo.getText().toLowerCase();
+        String[] ArrEmail = ToEmail.split(",");
+        String FromEmail = txtFrom.getText().toLowerCase(); // teamglap27@gmail.com
+        String FromEmailPassword = "tuls qsda mtgt aogf"; // You email Password
+        String Subjects = txtSubject.getText();
+
+        for (String singleEmail : ArrEmail) {
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.port", "587");
+            properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+//            Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+//                protected PasswordAuthentication getPasswordAuthentication() {
+//                    return new PasswordAuthentication(FromEmail, FromEmailPassword);
+//                }
+//            });
+
+            // Crée une session mail authentifiée
+            Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(FromEmail, FromEmailPassword);
+                }
+            });
+
+            try {
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(FromEmail));
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(singleEmail));
+                message.setSubject(Subjects);
+                message.setText(txtArMessage.getText());
+                Transport.send(message);
+                System.out.println("Message sent successfully!");
+            } catch (SendFailedException e) {
+                System.err.println("Send failed: " + e.getMessage());
+                e.printStackTrace();
+            } catch (MessagingException e) {
+                System.err.println("MessagingException: " + e.getMessage());
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.err.println("Exception: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+
+
+    }//GEN-LAST:event_btnSendMessageActionPerformed
 
     void setColor(JPanel panel) {
         panel.setBackground(new Color(255, 51, 51));
@@ -1657,7 +1834,9 @@ public class DashBoard extends javax.swing.JFrame {
     private necesario.RSMaterialButtonCircle btnAdd;
     private necesario.RSMaterialButtonCircle btnDelete;
     private javax.swing.JButton btnPrint;
+    private javax.swing.JButton btnSendMessage;
     private necesario.RSMaterialButtonCircle btnUpdate;
+    private javax.swing.JComboBox<String> cboFrom;
     private javax.swing.JComboBox<String> cboSexe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1697,12 +1876,18 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1710,9 +1895,11 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JLabel lblLoginName;
     private javax.swing.JLabel lblNbreResidence;
@@ -1738,13 +1925,17 @@ public class DashBoard extends javax.swing.JFrame {
     private rojeru_san.complementos.RSTableMetro tblManageStudent;
     private rojeru_san.complementos.RSTableMetro tblRommStatut;
     private rojeru_san.complementos.RSTableMetro tblStudentDetails;
+    private javax.swing.JTextArea txtArMessage;
     private rojeru_san.componentes.RSDateChooser txtDate;
     private app.bolivia.swing.JCTextField txtFonction;
+    private javax.swing.JTextField txtFrom;
     private app.bolivia.swing.JCTextField txtMail;
     private app.bolivia.swing.JCTextField txtMatricule;
     private app.bolivia.swing.JCTextField txtNationalite;
     private app.bolivia.swing.JCTextField txtNom;
     private javax.swing.JPasswordField txtPassword;
     private app.bolivia.swing.JCTextField txtPrenom;
+    private javax.swing.JTextField txtSubject;
+    private javax.swing.JTextField txtTo;
     // End of variables declaration//GEN-END:variables
 }
