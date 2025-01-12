@@ -17,7 +17,7 @@ public class DBConnection {
     public static Connection getConnection(){
         
         // URL de la base de données
-        String url = "jdbc:postgresql://localhost:5432/gestion_residence";
+        String url = "jdbc:postgresql://localhost:5433/gestion_residence";
         // Nom d'utilisateur et mot de passe
         String user = "postgres";
         String password = "Reinge";

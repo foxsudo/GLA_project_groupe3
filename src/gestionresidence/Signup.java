@@ -315,6 +315,8 @@ public class Signup extends javax.swing.JFrame {
 
     private void LblSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblSignUpMouseClicked
         // TODO add your handling code here:
+        new Authentification().setVisible(true);
+        this.hide();
     }//GEN-LAST:event_LblSignUpMouseClicked
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed

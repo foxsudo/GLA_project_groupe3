@@ -43,7 +43,7 @@ public class Authentification extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        rSMaterialButtonCircle1 = new necesario.RSMaterialButtonCircle();
+        btnLogin = new necesario.RSMaterialButtonCircle();
         LblWelcome = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -124,14 +124,14 @@ public class Authentification extends javax.swing.JFrame {
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         JpnWelcom.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 323, 270, 40));
 
-        rSMaterialButtonCircle1.setBackground(new java.awt.Color(255, 51, 51));
-        rSMaterialButtonCircle1.setText("Login");
-        rSMaterialButtonCircle1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(255, 51, 51));
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonCircle1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        JpnWelcom.add(rSMaterialButtonCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 260, 50));
+        JpnWelcom.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 260, 50));
 
         LblWelcome.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         LblWelcome.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,10 +181,11 @@ public class Authentification extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void LblWelcomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblWelcomeMouseClicked
-
+        new Signup().setVisible(true);
+        this.hide();
     }//GEN-LAST:event_LblWelcomeMouseClicked
 
-    private void rSMaterialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         
         String email = txtUserName.getText().toLowerCase();
         String passeword = txtPassword.getText();
@@ -214,7 +215,7 @@ public class Authentification extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_rSMaterialButtonCircle1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,6 +255,7 @@ public class Authentification extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JpnWelcom;
     private javax.swing.JLabel LblWelcome;
+    private necesario.RSMaterialButtonCircle btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -266,7 +268,6 @@ public class Authentification extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private necesario.RSMaterialButtonCircle rSMaterialButtonCircle1;
     private javax.swing.JPasswordField txtPassword;
     private app.bolivia.swing.JCTextField txtUserName;
     // End of variables declaration//GEN-END:variables
